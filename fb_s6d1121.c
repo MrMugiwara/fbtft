@@ -108,7 +108,7 @@ static void set_addr_win(struct fbtft_par *par, int xs, int ys, int xe, int ye)
 		break;
 	case 270:
 		write_reg(par, 0x0020, WIDTH - 1 - ys);
-		write_reg(par, 0x0021, xs);
+		write_reg(par, 0x0021, HEIGHT - 1 - xs);
 		break;
 	case 90:
 		write_reg(par, 0x0020, ys);
@@ -125,13 +125,13 @@ static int set_var(struct fbtft_par *par)
 	switch (par->info->var.rotate) {
 	/* AM: GRAM update direction */
 	case 0:
-		write_reg(par, 0x03, 0x0003 | (par->bgr << 12));
+		write_reg(par, 0x03, 0x0000 | (par->bgr << 12));
 		break;
 	case 180:
 		write_reg(par, 0x03, 0x0000 | (par->bgr << 12));
 		break;
 	case 270:
-		write_reg(par, 0x03, 0x000A | (par->bgr << 12));
+		write_reg(par, 0x03, 0x0008 | (par->bgr << 12));
 		break;
 	case 90:
 		write_reg(par, 0x03, 0x0009 | (par->bgr << 12));
